@@ -42,17 +42,6 @@ export const Competitive = () => {
     }
   ];
 
-  const achievements = [
-    {
-      text: "Global Rank 1 in CodeChef Starters 114 Division 3",
-      link: "https://www.codechef.com/rankings/START114C?itemsPerPage=100&order=asc&page=1&sortBy=rank"
-    },
-    {
-      text: "Global Rank 34 in CodeChef Starters 126 Division 2",
-      link: "https://www.codechef.com/rankings/START126B?itemsPerPage=100&order=asc&page=1&sortBy=rank"
-    }
-  ];
-
   const renderStatCard = (stat) => (
     <div
       className="stat-card p-4 text-center"
@@ -74,10 +63,10 @@ export const Competitive = () => {
         <h5 style={{ color: stat.color }}>{stat.platform}</h5>
         <p className="mb-2">Problems Solved: <strong>{stat.problems}</strong></p>
         {stat.extra && (
-        <small style={{ color: stat.color }}>
-          {stat.extra} {/* Apply the unique color to the "Max Rated" text */}
-        </small>
-      )}
+          <small style={{ color: stat.color }}>
+            {stat.extra}
+          </small>
+        )}
       </div>
       <a
         href={stat.link}
@@ -99,7 +88,7 @@ export const Competitive = () => {
   );
 
   return (
-    <section className="competitive mb-6" id="competitive" >
+    <section className="competitive mb-6" id="competitive">
       <div className="container">
         <div className="row text-center mb-5">
           <h2 className="fw-bold">Competitive Programming</h2>
@@ -122,73 +111,56 @@ export const Competitive = () => {
           ))}
         </div>
 
-
+        {/* Notable Achievements */}
         <div className="row justify-content-center" style={{ backgroundColor: "#000" }}>
-  <div className="col-lg-8 text-center">
-    <h4 className="mb-3" style={{ color: "#fff" }}>🏆 Notable Achievements</h4>
-    <ul className="list-unstyled">
-      {[
-        {
-          text: "Secured Global Rank 1 in CodeChef Contest Div 3",
-          link: "https://www.codechef.com/rankings/START114C?itemsPerPage=100&order=asc&page=1&sortBy=rank",
-        },
-        {
-          text: "Secured Global Rank 34 in CodeChef Contest Div 2",
-          link: "https://www.codechef.com/rankings/START126B?itemsPerPage=100&order=asc&page=1&sortBy=rank",
-        }
-      ].map((ach, idx) => {
-        // Extract rank part to wrap with colored span
-        const match = ach.text.match(/Global Rank \d+/);
-        const before = ach.text.slice(0, match?.index ?? 0);
-        const rank = match?.[0] ?? "";
-        const after = ach.text.slice((match?.index ?? 0) + rank.length);
-
-        // Set color based on rank
-        let rankColor = "#fff";
-        if (rank.includes("1")) rankColor = "#00ffcc";
-        else if (rank.includes("34")) rankColor = "#ffcc00";
-
-        return (
-          <li
-            key={idx}
-            className="d-flex flex-column flex-md-row align-items-center justify-content-between mb-2"
-            style={{ color: "#fff", fontSize: "1rem", gap: "0.2rem" }}
-          >
-            <span style={{ paddingLeft: "7.5rem", marginBottom: "4px" }}>
-              {before}
-              <span style={{ color: rankColor, fontWeight: "bold" }}>{rank}</span>
-              {after}
-            </span>
-            <a
-              href={ach.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-sm"
-              style={{
-                backgroundColor: "#6c63ff",
-                color: "#fff",
-                borderRadius: "5px",
-                padding: "4px 10px",
-                fontSize: "0.85rem",
-                textDecoration: "none",
-                marginRight: "120px"
-              }}
-            >
-              View Ranking
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </div>
-</div>
-
-
-
-
+          <div className="col-lg-8 text-center">
+            <h4 className="mb-4" style={{ color: "#fff" }}>🏆 Notable Achievements</h4>
+            <ul className="list-unstyled">
+              {[
+                {
+                  text: "CodeChef Starters 114 Division 3",
+                  rank: "Global Rank 1",
+                  link: "https://www.codechef.com/rankings/START114C?itemsPerPage=100&order=asc&page=1&sortBy=rank",
+                  color: "#00ffcc"
+                },
+                {
+                  text: "CodeChef Starters 126 Division 2",
+                  rank: "Global Rank 34",
+                  link: "https://www.codechef.com/rankings/START126B?itemsPerPage=100&order=asc&page=1&sortBy=rank",
+                  color: "#ffcc00"
+                }
+              ].map((ach, idx) => (
+                <li key={idx} className="mb-4">
+                  <div style={{ color: "#fff", fontSize: "1.05rem" }}>{ach.text}</div>
+                  <div className="text-center" style={{ fontWeight: "bold", color: ach.color, fontSize: "1.1rem" }}>
+                    {ach.rank}
+                  </div>
+                  <div className="mt-2">
+                    <a
+                      href={ach.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-sm"
+                      style={{
+                        backgroundColor: "#6c63ff",
+                        color: "#fff",
+                        borderRadius: "5px",
+                        padding: "4px 10px",
+                        fontSize: "0.85rem",
+                        textDecoration: "none"
+                      }}
+                    >
+                      View Ranking
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
-      {/* Background image as before */}
+      {/* Background image */}
       <img className="background-image-left" src={colorSharp} alt="Image" />
     </section>
   );
